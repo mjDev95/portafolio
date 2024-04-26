@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import gsap from 'gsap';
 import MenuSuperior from '../components/Nav-superior';
 import useCursorAnimation from '../hooks/useCursorAnimation';
 import wire from '../img/wireframe.png';
@@ -9,17 +10,35 @@ import code from '../img/code.png';
 const Hero = () => {
     const [showCode, setShowCode] = useState(false);
     const [showDesign, setShowDesign] = useState(true);
-    const { imageRef } = useCursorAnimation(); 
+    const [lastXPercent, setLastXPercent] = useState(50);
+    const { imageRef, isOverImage } = useCursorAnimation(setLastXPercent); 
 
-    const developmentClick = () => {
-        setShowCode(true);
-        setShowDesign(false);
+    const revealImage = async () => {
+        await gsap.to(imageRef.current, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, duration: 1 });
     };
 
-    const designClick = () => {
-        setShowCode(false);
-        setShowDesign(true);
+    const developmentClick = async () => {
+        if (!showCode) {
+            await revealImage();
+            setShowCode(true);
+            setShowDesign(false);
+        }
     };
+
+    const designClick = async () => {
+        if (!showDesign) {
+            await revealImage();
+            setShowCode(false);
+            setShowDesign(true);
+        }
+    };
+
+    useEffect(() => {
+        if (!isOverImage && (showCode || showDesign)) {
+            gsap.to(imageRef.current, { clipPath: `polygon(0 0, ${lastXPercent}% 0, ${lastXPercent}% 100%, 0 100%)`, duration: 1 });
+        }
+    }, [isOverImage, showCode, showDesign, lastXPercent, imageRef]);
+
 
     return (
         <section className='hero'>
@@ -32,7 +51,7 @@ const Hero = () => {
                             <p>Este es un componente de hero que ocupa el alto completo de la pantalla.</p>
                         </Col>
                         <Col xs={12} md={6}>
-                            <div>
+                            <div className="my-5">
                                 <div className="position-relative mx-auto content-reveal-image">
                                     {showDesign && <img className="position-absolute img_for_reveal" src={wire} alt="Wireframe" />}
                                     {showCode && <img className="position-absolute img_for_reveal" src={code} alt="Código" />}

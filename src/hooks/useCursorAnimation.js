@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 
-const useCursorAnimation = () => {
+const useCursorAnimation = (setLastXPercent) => {
     const cursorRef = useRef(null);
     const imageRef = useRef(null);
     const [isOverImage, setIsOverImage] = useState(false);
@@ -10,6 +10,7 @@ const useCursorAnimation = () => {
     const handleMouseLeave = () => setIsOverImage(false);
 
     useEffect(() => {
+        
         const imageElement = document.querySelector('.content-reveal-image');
         if (imageElement) {
             imageElement.addEventListener('mouseenter', handleMouseEnter);
@@ -47,8 +48,20 @@ const useCursorAnimation = () => {
                 if (inImagen) {
                     const x = clientX - limitesImagen.left;
                     const xPercent = (x / limitesImagen.width) * 100;
+                    setLastXPercent(xPercent); 
                     gsap.to(imageRef.current, { clipPath: `polygon(0 0, ${xPercent}% 0, ${xPercent}% 100%, 0% 100%)` });
                 }
+            }
+        };
+        const handleMouseDown = () => {
+            if (cursorRef.current && !isOverImage) {
+              cursorRef.current.classList.add('active');
+            }
+        };
+
+        const handleMouseUp = () => {
+            if (cursorRef.current && !isOverImage) {
+              cursorRef.current.classList.remove('active');
             }
         };
 
@@ -72,6 +85,9 @@ const useCursorAnimation = () => {
         window.addEventListener('touchstart', mouseEnterWindow);
         window.addEventListener('touchend', mouseLeaveWindow);
 
+        document.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('mouseup', handleMouseUp);
+
         return () => {
             window.removeEventListener('mousemove', movimientoMouse);
             window.removeEventListener('mouseover', mouseEnterWindow);
@@ -80,13 +96,17 @@ const useCursorAnimation = () => {
             window.removeEventListener('touchmove', movimientoMouse);
             window.removeEventListener('touchstart', mouseEnterWindow);
             window.removeEventListener('touchend', mouseLeaveWindow);
+
             imageElement.removeEventListener('mouseenter', handleMouseEnter);
             imageElement.removeEventListener('mouseleave', handleMouseLeave);
             // Elimina eventos táctiles
             imageElement.removeEventListener('touchstart', handleMouseEnter);
             imageElement.removeEventListener('touchend', handleMouseLeave);
+            // Elimina evento de click en el documento
+            document.removeEventListener('mousedown', handleMouseDown);
+            document.removeEventListener('mouseup', handleMouseUp);
         };
-    }, []);
+    }, [setLastXPercent, isOverImage]);
 
     return { cursorRef, imageRef, isOverImage };
 };
