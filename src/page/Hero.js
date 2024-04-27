@@ -46,11 +46,16 @@ const Hero = () => {
             <div className="content-hero mx-3" data-scroll-section>
                 <Container >
                     <Row>
-                        <Col xs={12} md={6}>
-                            <h1 className="animate-this">Bienvenido a mi sitio web</h1>
-                            <p>Este es un componente de hero que ocupa el alto completo de la pantalla.</p>
+                        <Col xs={12} md={8}>
+                            <div className="text">
+                                <p className="subheading"><span className="hi">¡Hola!</span> Soy Mario</p>
+                                <h1 className="mb-4 mt-3">
+                                    Diseñador y desarrollador creativo <span className="font-weight-bold">de UI/UX</span>
+                                </h1>
+                                <div className="ml-0 ml-lg-auto mr-auto mr-lg-0 btn_contacto">X</div>
+                            </div>
                         </Col>
-                        <Col xs={12} md={6}>
+                        <Col xs={12} md={4}>
                             <div className="my-5">
                                 <div className="position-relative mx-auto content-reveal-image">
                                     {showDesign && <img className="position-absolute img_for_reveal" src={wire} alt="Wireframe" />}

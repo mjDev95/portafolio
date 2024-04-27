@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useTheme } from '../hooks/useTheme'; 
 
 
+
 function MenuSuperior({ email, phoneNumber}) {
     const { theme, toggleTheme } = useTheme();
 
@@ -17,6 +18,9 @@ function MenuSuperior({ email, phoneNumber}) {
             <Link to="/blog" className="mx-3">Blog</Link>
             <Button variant="link ms-auto ms-lg-0" onClick={toggleTheme}>
                 {theme === 'dark' ? <Sun color="gold" size={16} /> : <Moon color="silver" size={16} />}
+            </Button>
+            <Button variant="link ms-auto ms-lg-0" className="btn_contacto">
+                Contactar
             </Button>
         </div>
     );

@@ -116,12 +116,13 @@ VARIABLES CSS
   --font-size-h1-sm: 12vw;
 
   /*Animaciones*/
-  --animation-primary: .5s cubic-bezier(0, 0.6, 0, 0.79);
-  --animation-nav: .5s cubic-bezier(.6, 0, .4, 1);
-  --animation-smooth: .5s cubic-bezier(.7, 0, .3, 1);
+  /*Transición*/
 
-    /*Transición*/
-    transition: background-color 0.5s ease, color 0.5s ease;
+  /*Sombras*/
+  --general--shadow-01: rgba(6, 6, 6, .1);
+  --general--shadow-02: rgba(6, 6, 6, .12);
+  --general--shadow-03: rgba(20, 20, 43, .24);
+
 }
 
 .dark-theme {
@@ -171,12 +172,119 @@ h1 {
 }
 
 /*--------------------------------------------------------------
+Lateral
+--------------------------------------------------------------*/
+.app-lateral {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background: var(--color-main);
+  z-index: 100;
+  transform: translate(calc(100% + 6vw), 0) rotate(0.001deg);
+  transition: transform .8s cubic-bezier(.7, 0, .2, 1);
+  will-change: transform;
+}
+.fixed-nav-rounded-div {
+  position: absolute;
+  left: 1px;
+  transform: translateX(-100%);
+  height: 100%;
+  top: 0;
+}
+.fixed-nav-rounded-div .content-rounded {
+  width: 6vw;
+  height: 100%;
+  transition: var(--animation-slow);
+  transition: all .85s cubic-bezier(.7, 0, .2, 1);
+  will-change: width;
+}
+
+.content-rounded {
+  width: 100%;
+  top: 0;
+  position: relative;
+  height: 10vh;
+  overflow: hidden;
+}
+
+.fixed-nav-rounded-div .content-rounded .div-rounded{
+  background: var(--color-main);
+  height: 150%;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 775%;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-6.5%, -50%);
+}
+
+.div-rounded {
+  width: 150%;
+  content: "";
+  display: block;
+  position: absolute;
+  background: var(--color-white);
+  height: 750%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -86.666%);
+  z-index: 1;
+}
+.app-lateral.active {
+  transform: translate(0, 0) rotate(0.001deg);
+}
+
+.app-lateral.active .content-rounded{
+  width: 0vw;
+}
+
+.info-fixed{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15vh 17.5vw 10vh 17.5vw;
+  position: relative;
+  transform: translate(0, 0) rotate(0.001deg);
+  transition: all .6s cubic-bezier(.7, 0, .2, 1);
+  will-change: transform;
+}
+.btn_contacto {
+  height: 50px;
+  width: 50px;
+  background: #fff;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  font-size: 40px;
+  font-weight: 600;
+}
+.App.active{
+  transform: translate(-10%);
+  transition: transform 2s cubic-bezier(.2,1,.2,1);
+}
+/*--------------------------------------------------------------
 Hero
 --------------------------------------------------------------*/
 .content-hero{
   border-radius: 30px;
-  background-color: var(--color-gray);
-  color: var(--color-txt-gray);
+/*   background-color: var(--color-gray);
+  color: var(--color-txt-gray); */
+}
+
+p.subheading {
+  font-size: 50px;
+}
+span.hi {
+  background: var(--color-main);
+  padding: 5px 15px;
+  font-size: 35px;
+  border-radius: 50px;
+  color: var(--color-blanco);
 }
 .content-reveal-image {
   height: 400px;
@@ -190,6 +298,7 @@ Hero
   height: 50px;
   background-color: var(--color-dark);  
   border-radius: 40px;
+  
 }
 
 .tabs > *{
