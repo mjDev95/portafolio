@@ -20,8 +20,8 @@ export const ButtonProvider = ({ children }) => {
                 button.removeEventListener('click', toggleActive);
             });
         };
-    }, [toggleActive]);  // Ahora toggleActive es una dependencia
-
+    }, [toggleActive]); 
+    
     return (
         <ButtonContext.Provider value={{ isActive }}>
             {children}

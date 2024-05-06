@@ -19,9 +19,6 @@ function MenuSuperior({ email, phoneNumber}) {
             <Button variant="link ms-auto ms-lg-0" onClick={toggleTheme}>
                 {theme === 'dark' ? <Sun color="gold" size={16} /> : <Moon color="silver" size={16} />}
             </Button>
-            <Button variant="link ms-auto ms-lg-0" className="btn_contacto">
-                Contactar
-            </Button>
         </div>
     );
 }
