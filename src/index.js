@@ -6,15 +6,21 @@ import App from './App';
 import Cursor from './components/Cursor';
 import Lateral from './components/Lateral';
 import { ButtonProvider } from './contextos/ButtonContext';
+import { LocomotiveScrollProvider } from 'react-locomotive-scroll';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('aplication'));
 root.render(
   <React.StrictMode>
     <ButtonProvider>
-      <App />    
-      <Lateral/>
-      <Cursor/>
+      <LocomotiveScrollProvider
+        options={{ smooth: true, /* smartphone: { smooth: true } */}}
+        watch={[]}
+      >
+        <App />
+        <Lateral/>
+        <Cursor/>
+      </LocomotiveScrollProvider>
     </ButtonProvider>
   </React.StrictMode>
 );

@@ -1,29 +1,20 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 
 export const ButtonContext = createContext();
 
 export const ButtonProvider = ({ children }) => {
     const [isActive, setIsActive] = useState(false);
+    const [activeContent, setActiveContent] = useState(null);
 
-    const toggleActive = useCallback(() => {
+
+
+    const toggleActive = useCallback((content) => {
         setIsActive(prevIsActive => !prevIsActive);
+        setActiveContent(content);
     }, []);
-
-    useEffect(() => {
-        const buttons = document.querySelectorAll('.btn_contacto');
-        buttons.forEach(button => {
-            button.addEventListener('click', toggleActive);
-        });
-
-        return () => {
-            buttons.forEach(button => {
-                button.removeEventListener('click', toggleActive);
-            });
-        };
-    }, [toggleActive]); 
     
     return (
-        <ButtonContext.Provider value={{ isActive }}>
+        <ButtonContext.Provider value={{ isActive, activeContent, toggleActive }}>
             {children}
         </ButtonContext.Provider>
     );

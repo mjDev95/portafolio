@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, useContext  } from 'react';
-import { LocomotiveScrollProvider, useLocomotiveScroll } from 'react-locomotive-scroll'
+import { useState, useEffect, useRef, useContext } from 'react';
+import { useLocomotiveScroll } from 'react-locomotive-scroll';
 import Routes from './components/Routes';
 import Loader from './components/Loader';
 import { ButtonContext } from './contextos/ButtonContext';
@@ -27,17 +27,21 @@ function App() {
     }
   }, [scroll])
 
+  useEffect(() => {
+    if (isActive && scroll) {
+      console.log('Deteniendo el scroll...' + scroll);
+      scroll.stop();
+    } else if (!isActive && scroll) {
+      console.log('Iniciando el scroll...' + scroll);
+      scroll.start();
+    }
+  }, [isActive, scroll]);
+
   return (
-    <LocomotiveScrollProvider
-      options={{ smooth: true, smartphone: { smooth: true } }}
-      watch={[]}
-      containerRef={containerRef}
-    >
-      <main data-scroll-container ref={containerRef} className={`App ${isActive ? 'active' : ''}`}>
-        <Loader isLoading={isLoading} />
-        <Routes setIsLoading={setIsLoading} />
-      </main>
-    </LocomotiveScrollProvider>
+    <main data-scroll-container ref={containerRef} className={`App ${isActive ? 'active' : ''}`}>
+      <Loader isLoading={isLoading} />
+      <Routes setIsLoading={setIsLoading} />
+    </main>
   );
 }
 

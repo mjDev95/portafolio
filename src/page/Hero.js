@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import gsap from 'gsap';
 import MenuSuperior from '../components/Nav-superior';
+import ButtonsMain from '../components/ButtonsMain';
 import useCursorAnimation from '../hooks/useCursorAnimation';
 import wire from '../img/wireframe.png';
 import web from '../img/web.png'; 
@@ -52,7 +53,7 @@ const Hero = () => {
                                 <h1 className="mb-4 mt-3">
                                     Diseñador y desarrollador creativo <span className="font-weight-bold">de UI/UX</span>
                                 </h1>
-                                <div className="ml-0 ml-lg-auto mr-auto mr-lg-0 btn_contacto">X</div>
+                                <ButtonsMain content="social media" anchorText="Social Media" />
                             </div>
                         </Col>
                         <Col xs={12} md={4}>
