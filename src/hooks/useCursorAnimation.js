@@ -96,12 +96,14 @@ const useCursorAnimation = (setLastXPercent) => {
             window.removeEventListener('touchmove', movimientoMouse);
             window.removeEventListener('touchstart', mouseEnterWindow);
             window.removeEventListener('touchend', mouseLeaveWindow);
-
-            imageElement.removeEventListener('mouseenter', handleMouseEnter);
-            imageElement.removeEventListener('mouseleave', handleMouseLeave);
-            // Elimina eventos táctiles
-            imageElement.removeEventListener('touchstart', handleMouseEnter);
-            imageElement.removeEventListener('touchend', handleMouseLeave);
+            // Comprueba si imageElement existe antes de intentar eliminar los event listeners
+            if (imageElement) {
+                imageElement.removeEventListener('mouseenter', handleMouseEnter);
+                imageElement.removeEventListener('mouseleave', handleMouseLeave);
+                // Elimina eventos táctiles
+                imageElement.removeEventListener('touchstart', handleMouseEnter);
+                imageElement.removeEventListener('touchend', handleMouseLeave);
+            }
             // Elimina evento de click en el documento
             document.removeEventListener('mousedown', handleMouseDown);
             document.removeEventListener('mouseup', handleMouseUp);

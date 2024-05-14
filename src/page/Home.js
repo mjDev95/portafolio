@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import usePageTransition from '../hooks/usePageTransition';
 import Footer from '../components/Footer';
+import ProyectosHome from '../components/ProyectosHome';
 import Hero from '../page/Hero';
 
 const HomePage = ({ setIsLoading, isLoading }) => {
@@ -14,7 +15,8 @@ const HomePage = ({ setIsLoading, isLoading }) => {
 
   return (
     <div  className={`contenido_page ${isExiting ? '' : 'exit'}`}>
-      <Hero/>         
+      <Hero/>      
+      <ProyectosHome/>
       <Footer/>
     </div>
   );
