@@ -4,8 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
     return (
-        <footer  data-scroll-section>
-            <Container>
+        <footer>
+            <Container className="mt-5">
                 <Row className="my-4">
                     <Col xs={12} lg="auto">
                         <a className="link_correo d-block mb-4" href="/home">hey@email.com</a>

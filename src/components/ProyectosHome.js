@@ -17,23 +17,23 @@ const ProyectosHome = () => {
   }, [proyectos]);
 
   return (
-    <section data-scroll-section>
+    <section className='proyectos_destacados'>
         <Container>
     
             <div className="d-flex my-5 justify-content-between align-items-center">
                 <h2>PROYECTOS <span>DESTACADOS</span></h2>
-                <Link to="/proyectos">Ver todos los proyectos</Link>
+                <Link to="/proyectos">Ver todos</Link>
             </div>
 
             <Row>
-                <Col xs={12} lg={6} className="d-none d-lg-block">
-                    <div className='img_tab_proyecto position-relative'>
+                <Col  lg={5} className="d-none d-lg-block">
+                    <div className='img_tab_proyecto position-relative mx-auto'>
                         {proyectos.map((proyecto, index) => (
-                            <Image key={index} src={proyecto.imagen} fluid className={proyecto.imagen === imagenSeleccionada ? 'active position-absolute top-0 left-0' : 'position-absolute top-0 left-0'} />
+                            <Image key={index} src={proyecto.imagen} fluid className={proyecto.imagen === imagenSeleccionada ? 'active w-100 h-100 object-fit-cover position-absolute top-0 left-0 img-fluid' : 'w-100 h-100 object-fit-cover position-absolute top-0 left-0 img-fluid'} />
                         ))}
                     </div>
                 </Col>
-                <Col xs={12} lg={6}>
+                <Col xs={12} lg={7}>
                 {proyectos.map((proyecto, index) => (
                     <div className='showcase__title d-flex flex-column align-items-start justify-content-around' key={index} onMouseEnter={() => manejarHover(proyecto.imagen)}>
                         <div className="d-lg-none">
