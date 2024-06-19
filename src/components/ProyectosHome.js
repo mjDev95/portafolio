@@ -3,9 +3,11 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ProyectoABC from '../proyectos/abc';
 import ProyectoSanJose from '../proyectos/san-jose';
+import Proyecto3 from '../proyectos/proyecto-3';
+
 
 const ProyectosHome = () => {
-  const proyectos = useMemo(() => [ProyectoABC, ProyectoSanJose], []);
+  const proyectos = useMemo(() => [ProyectoABC, ProyectoSanJose,Proyecto3], []);
   const [imagenSeleccionada, setImagenSeleccionada] = React.useState(proyectos[0].imagen);
 
   const manejarHover = (imagen) => {
@@ -25,7 +27,7 @@ const ProyectosHome = () => {
                 <Link to="/proyectos">Ver todos</Link>
             </div>
 
-            <Row>
+            <Row className="align-items-center">
                 <Col  lg={5} className="d-none d-lg-block">
                     <div className='img_tab_proyecto position-relative mx-auto'>
                         {proyectos.map((proyecto, index) => (

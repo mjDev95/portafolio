@@ -83,11 +83,19 @@ body {
   font-size: var(--font-size-default);
   transition: background-color 0.5s cubic-bezier(0.25, 0.1, 0.4, -0.12), color 0.5s cubic-bezier(0, 0, 0.05, -0.57);
 }
+::-webkit-scrollbar {
+  display: none
+}
 
 h1 {
   font-family: var(--font-titles);
   font-size: var(--font-size-h1);
 }
+
+.no-scroll {
+  overflow: hidden; 
+}
+
 
 /*--------------------------------------------------------------
 Lateral
@@ -271,12 +279,14 @@ Loader
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--color-dark);
+  min-height: 100vh;
+  background-color: var(--color-main);
   color: var(--color-txt-gray);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  
 }
 
 /*--------------------------------------------------------------
@@ -288,10 +298,14 @@ Portafolio
 
 .showcase__title {
   min-height: 130px;
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
+}
+
+.showcase__title:nth-of-type(2) {
+  border-width: 1px 0px 1px 0px;
+  border-style: solid; 
   border-color: var(--color-txt-gray);
 }
+
 .img_tab_proyecto {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -324,6 +338,21 @@ Portafolio
   line-height: 1.167em;
   color: var(--color-txt-dark);
 }
+/*--------------------------------------------------------------
+Portafolio - single
+--------------------------------------------------------------*/
+button.btn-back {
+  position: fixed;
+  left: 40px;
+  top: 40px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 2500;
+  background: #fff;
+  border-radius: 25px;
+}
+
 /*--------------------------------------------------------------
 ANIMATIONS
 --------------------------------------------------------------*/
@@ -412,6 +441,14 @@ MEDIA QUERIES
 
   .fixed-nav-rounded-div .content-rounded {
     width: 20vw;
+  }
+  /*--------------------------------------------------------------
+  Portafolio
+  --------------------------------------------------------------*/
+  .showcase__title {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid; 
+    border-color: var(--color-txt-gray);
   }
 
 }

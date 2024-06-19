@@ -1,7 +1,7 @@
 import imagen from './san-jose.png';
 
 const proyecto = {
-  id: '1',
+  id: '2',
   categoria: 'UI-UX DESIGN',
   titulo: 'San Jose',
   imagen,
